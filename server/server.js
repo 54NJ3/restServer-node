@@ -1,7 +1,9 @@
+require('./config/config')
+
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-require('./config/config')
+const mongoose = require('mongoose');
 
 
 // parse application/x-www-form-urlencoded
@@ -9,43 +11,14 @@ app.use(bodyParser.urlencoded({ extended: false }))
  
 // parse application/json
 app.use(bodyParser.json())
-
-
-
-app.get('/user', function (req, res) {
-  res.json('get LOCAL User')
-})
-
-app.post('/user', function (req, res) {
-
-    ///res.json('set User')
-    let body = req.body
-    
-    if(body.name === undefined){
-       res.status(400).json({
-           ok : false,
-           message : 'Name is necessary'
-       })
-    }else{
-        res.json({
-            user : body
-        })
-    }
-
-})
    
-app.put('/user/:id', function (req, res) {
+app.use( require('./routes/user') );
 
-    let id = req.params.id;
-    //res.json('update User')
-    res.json({
-        id
-    })
-})
 
-app.delete('/user', function (req, res) {
-    res.json('delete User')
-})
-   
+mongoose.connect(process.env.URLDB,  { useNewUrlParser: true, useCreateIndex: true }, (error, res) => {
+    if (error) throw error;
+
+    console.log('Data base online');
+});
    
 app.listen(process.env.PORT, () => console.log('Listening through port: ' , process.env.PORT))

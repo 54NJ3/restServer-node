@@ -5,12 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "node server/server.js"
+    "start": "node server/server.js"
   },
   "author": "Santiago Villalobos",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "install": "^0.12.2",
+    "mongoose": "^5.5.15",
+    "mongoose-unique-validator": "^2.0.3",
+    "node-pre-gyp": "^0.13.0",
+    "underscore": "^1.9.1"
   }
 }
