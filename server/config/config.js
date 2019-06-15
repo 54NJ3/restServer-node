@@ -7,7 +7,6 @@ process.env.PORT = process.env.PORT || 3000;
 /*
 ENTORNO
 */
-
 process.env.NODE_ENV = process.env.NODE_ENV || 'dev'
 
 /*
@@ -32,5 +31,11 @@ if(process.env.NODE_ENV === 'dev')
     urlDB = process.env.MONGO_URL
 }
 
-
 process.env.URLDB = urlDB;
+
+
+/*
+GOOGLE CLIENT ID
+*/
+
+process.env.CLIENT_ID = process.env.CLIENT_ID || '1051325883584-ba2e7e48volqda9ci181dl0q8jreo302.apps.googleusercontent.com';
