@@ -10,7 +10,16 @@ ENTORNO
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'dev'
 
+/*
+Vencimiento del token: 30 dias
+*/
 
+process.env.TOKEN_EXPIRATION = "30d"
+
+/*
+SEED de autenticación
+*/
+process.env.TOKEN_SEED =  process.env.TOKEN_SEED || 'este-es-el-seed-desarrollo'
 /*
 BASE DE DATOS
 */

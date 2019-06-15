@@ -1,10 +1,12 @@
 const express = require('express')
 const app = express()
 const User = require('../models/user')
+const {tokenVerify,adminVerify} = require('../middleware/authentication')
 const bcrypt = require('bcryptjs');
 const _ = require('underscore')
 
-app.get('/user', function (req, res) {
+
+app.get('/user',[tokenVerify,adminVerify],(req, res) =>{
     //res.json('get LOCAL User')
     let from = req.query.from || 0;
     from = Number(from)
@@ -39,7 +41,7 @@ app.get('/user', function (req, res) {
         })
 })
   
-app.post('/user', function (req, res) {
+app.post('/user' ,[tokenVerify,adminVerify] ,function (req, res) {
   
       ///res.json('set User')
     let body = req.body
@@ -75,7 +77,7 @@ app.post('/user', function (req, res) {
   
 })
      
-app.put('/user/:id', function (req, res) {
+app.put('/user/:id',[tokenVerify,adminVerify] , (req, res) =>{
    
     let body = _.pick(req.body, ['name','email', 'img', 'role' , 'state'])
 
@@ -98,7 +100,7 @@ app.put('/user/:id', function (req, res) {
     //res.json('update User')
 })
   
-app.delete('/user/:id', function (req, res) {
+app.delete('/user/:id',[tokenVerify,adminVerify],  (req, res) =>{
     ///res.json('delete User')
     let body = _.pick(req.body, ['state'])
     body.state = false
